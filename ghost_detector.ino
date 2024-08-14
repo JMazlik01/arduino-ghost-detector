@@ -8,7 +8,9 @@ int blinkDelay = 250;
 int blink = LOW;
 bool turnedOn = false;
 
-int const ledPins[LED_COUNT] = { 2, 3, 4, 5, 6, 7 };
+int const ledPins[LED_COUNT] = { 2, 3, 4, 5, 6, 7 };  
+
+// 0 - LED_COUNT + 1 -> +1 for the 'turned off' state
 int const blinkDelays[LED_COUNT + 1] = { 500, 500, 400, 300, 250, 150, 50 };
 
 void setup() {
@@ -23,7 +25,6 @@ void loop() {
 
   potVal = analogRead(POT_PIN);
 
-  // 0 - LED_COUNT + 1 -> +1 for the 'turned off' state
   pinsOn = map(potVal, 0, 1023, 0, LED_COUNT);
   turnedOn = pinsOn != 0;
   blinkDelay = blinkDelays[pinsOn];
